@@ -11,6 +11,7 @@ public class Aes {
     SecretKey secretKey = keyGenerator.generateKey();
     cipher = Cipher.getInstance("AES");
     String plainText = "AES Symmetric Encryption Decryption";
+
     System.out.println("Plain Text Before Encryption: " + plainText);
     String encryptedText = encrypt(plainText, secretKey);
     System.out.println("Encrypted Text After Encryption: " + encryptedText);
