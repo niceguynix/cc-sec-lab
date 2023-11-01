@@ -2,28 +2,21 @@ import java.util.Scanner;
 
 class cipher {
   String alphabet = "abcdefghijklmnopqrstuvwxyz";
+
   String encrypt(String plainText, int shiftKey) {
     plainText = plainText.toLowerCase();
     String cipherText = "";
-    for (int i = 0; i < plainText.length(); i++) {
-      int charPosition = alphabet.indexOf(plainText.charAt(i));
-      int keyVal = (shiftKey + charPosition) % 26;
-      char replaceVal = alphabet.charAt(keyVal);
-      cipherText += replaceVal;
+    for (char c : plainText.toCharArray()) {
+      cipherText += alphabet.charAt((((char) c - 97) + shiftKey)%26);
     }
     return cipherText;
   }
+
   String decrypt(String cipherText, int shiftKey) {
     cipherText = cipherText.toLowerCase();
     String plainText = "";
-    for (int i = 0; i < cipherText.length(); i++) {
-      int charPosition = alphabet.indexOf(cipherText.charAt(i));
-      int keyVal = (charPosition - shiftKey) % 26;
-      if (keyVal < 0) {
-        keyVal = alphabet.length() + keyVal;
-      }
-      char replaceVal = alphabet.charAt(keyVal);
-      plainText += replaceVal;
+    for (char c : cipherText.toCharArray()) {
+      plainText += alphabet.charAt((((char) c - 97) - shiftKey)%26);
     }
     return plainText;
   }
@@ -34,14 +27,10 @@ class Caesar {
     cipher c = new cipher();
     Scanner sc = new Scanner(System.in);
     System.out.println("Enter the String for Encryption: ");
-    String message = new String();
-    message = sc.next();
-    String cipherText = new String();
-    cipherText = c.encrypt(message, 3);
-    System.out.println("Encryption:");
-    System.out.println(cipherText);
-    System.out.println("Decryption:");
-    System.out.println(c.decrypt(cipherText, 3));
+    String message = sc.next();
+    String cipherText = c.encrypt(message, 5);
+    System.out.println("Encryption:" + cipherText);
+    System.out.println("Decryption:" + c.decrypt(cipherText, 5));
     sc.close();
   }
 }
