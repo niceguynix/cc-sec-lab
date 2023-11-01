@@ -19,15 +19,17 @@ public class Hill {
 
     i = 0;
     int zz = 0;
+
     for (int b = 0; b < str.length() / 3; b++) {
       for (int j = 0; j < 3; j++) {
         for (int x = 0; x < 3; x++) {
-          c[i] += k[j][x] * p[x + zz];
+          c[i] += k[j][x] * p[zz+x];
         }
         i++;
       }
       zz += 3;
     }
+    
 
     System.out.println("Encrypted Text : ");
     for (int z = 0; z < str.length(); z++)
